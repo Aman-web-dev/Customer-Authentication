@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 app.use(express.json());
-const User = require('../models/usermodels');
+const User = require('../models/Usermodels');
 
 const router = express.Router();
 
@@ -106,6 +106,36 @@ router.post('/', async (req, res) => {
     }
   })
   
+
+
+
+  router.post('/login',async(req,res)=>{
+
+     const userName=req.body.userName;
+
+     console.log(userName)
+
+     try{
+
+    const validateUser=await User.findOne({userName:userName});
+
+    if(validateUser.password!==req.body.password){
+      res.send("Enter a valid password");
+
+    }
+
+    if(validateUser.password==req.body.password){
+
+      res.send("successFully loggedIn");
+    }
+
+
+  }
+  catch{
+    res.send("Enter a valid UserName");
+  }
+
+  })
 
 
    module.exports=router;

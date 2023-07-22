@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const data=require('./config');
 
 const app = express();
-app.use(express.json());
-const cors=require("cors");
-app.use(cors())
+  app.use(express.json());
+  const cors=require("cors");
+  app.use(cors())
 
-const userRouter = require('./routes/routes');
+const userRouter = require('./routes/Routes');
 
 const PORT=data.APP_PORT;
 const URI = data.MONGODB_URI;
